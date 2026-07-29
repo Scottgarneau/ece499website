@@ -1,1 +1,1 @@
-console.log("Project Showcase Loaded Successfully!");
+console.log("3D Clinostat Website Loaded. Grid layout active and ready for images.");

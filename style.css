@@ -26,7 +26,7 @@ strong {
   max-width: 1300px; /* Wider for desktop, constrained for readability */
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 even columns on large screens */
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 equal-width columns on large screens */
   gap: 1.5rem; /* Gap between "poster cards" */
 }
 

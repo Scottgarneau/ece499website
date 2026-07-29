@@ -1,40 +1,197 @@
+/* --- Global Styles & Reset --- */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Base body styles, inspired by the light poster background */
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* Cleaner modern font stack */
   line-height: 1.6;
   color: #333;
-  background-color: #f4f6f8;
-  padding: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
+  background-color: #e6eef4; /* Light gray-blue, derived from poster */
+  padding: 2rem 1rem; /* Adjust padding for mobile */
 }
 
-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-header h1 {
-  font-size: 2.5rem;
+/* Strong accents, bolding key terms as requested */
+strong {
+  font-weight: 600;
   color: #111;
 }
 
-.card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  margin-bottom: 1.5rem;
+/* --- The Main Layout (CSS Grid) --- */
+/* Inspired by the poster's columns, collapsing for mobile */
+.poster-container {
+  max-width: 1300px; /* Wider for desktop, constrained for readability */
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 even columns on large screens */
+  gap: 1.5rem; /* Gap between "poster cards" */
 }
 
-footer {
+/* Utility classes for the grid */
+.grid-span-all {
+  grid-column: 1 / -1; /* Stretch across all columns */
+}
+
+/* --- Card Styles (The "Sections") --- */
+.grid-card {
+  background: white;
+  border-radius: 12px; /* Slightly more rounded corners for a modern feel */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* More definition */
+  display: flex;
+  flex-direction: column; /* Stack header and content within a card */
+  overflow: hidden; /* Keep images from spilling out */
+}
+
+/* Card Header (Blue section titles) */
+.section-title {
+  background-color: #3870b2; /* Darker blue, derived from poster */
+  color: white;
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: capitalize; /* Ensure nice title casing */
+}
+
+/* Secondary subsection titles (Purple accents) */
+.subsection-title {
+  color: #8c5fb4; /* Purple/pink accent, derived from author names */
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Content padding and inner spacing */
+.card-content {
+  padding: 1.5rem;
+  flex-grow: 1; /* Allow content to grow to match card height */
+}
+
+.card-content p {
+  margin-bottom: 1rem;
+}
+
+/* List styles within cards */
+.card-content ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.card-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* --- Specific Section Styles --- */
+
+/* Main Page Header and Title */
+.main-header {
   text-align: center;
+  margin-bottom: 1rem;
+  padding: 2rem 0;
+}
+
+.main-title {
+  color: #2b578c; /* Main blue title color */
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.author-names {
+  font-size: 1.3rem;
+  color: #8c5fb4; /* The author pink accent color from poster */
+  margin-top: 0.5rem;
+  font-weight: 400;
+}
+
+/* Design & Analysis subsection grid */
+.design-analysis-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Specific sub-grid for analysis layout */
+  gap: 1.5rem;
+}
+
+/* Results section image alignment */
+.results-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center images and data in results */
+}
+
+/* Placeholder styles (Temp images) */
+.image-placeholder {
+  background-color: #f1f3f5;
+  border: 2px dashed #ccd0d5;
+  color: #727b84;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  border-radius: 8px;
+}
+
+.placeholder-text {
   font-size: 0.9rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* Main Clinostat Image placeholder (Larger) */
+.results .image-placeholder {
+  height: 400px;
+}
+
+/* Acknowledgment styling, making lists dense */
+.acknowledgment .card-content ul {
+  font-size: 0.95rem;
+  list-style-type: none; /* Cleaner for credit list */
+  margin-left: 0;
+}
+
+/* Footer styling */
+.main-footer {
+  text-align: center;
+  padding: 2rem 0;
   color: #666;
-  margin-top: 2rem;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+/* --- RESPONSIVE STYLES (THE MOST IMPORTANT PART) --- */
+/* Media query to handle smaller screens (tablet and phone) */
+@media (max-width: 1024px) {
+  .poster-container {
+    grid-template-columns: repeat(2, 1fr); /* Reduce to 2 columns on tablets */
+  }
+}
+
+/* Small screen / Phone (Collapsing all grids into a stack) */
+@media (max-width: 768px) {
+  .poster-container {
+    display: flex; /* Switch grid to flexible vertical column */
+    flex-direction: column;
+    padding: 0 0.5rem;
+  }
+
+  .main-title {
+    font-size: 2.2rem;
+  }
+
+  .grid-card, .grid-span-all {
+    /* Ensure cards stack correctly in the flex container */
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Reset the inner sub-grids */
+  .design-analysis-grid {
+    display: flex;
+    flex-direction: column;
+  }
 }

@@ -3,31 +3,161 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Title | Showcase</title>
-  <meta name="description" content="A brief overview of our awesome project." />
+  <title>3D Clinostat For Simulated Microgravity in Cell Cultures | Project Showcase</title>
+  <meta name="description" content="Showcase of a 3D Clinostat project by Abdel Yasser, Rylee Rolstone, Sasha Ramchandani, and Scott Garneau." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Project Name</h1>
-    <p>A brief 1-line tag line about what this project accomplishes.</p>
-  </header>
 
-  <main>
-    <section class="card">
-      <h2>About the Project</h2>
-      <p>Detail your project goals, technologies used, and key features here.</p>
+  <!-- Main Grid Container: Inspired by the poster layout -->
+  <div class="poster-container">
+
+    <!-- Header Section -->
+    <header class="grid-span-all main-header">
+      <h1 class="main-title">3D Clinostat For Simulated Microgravity in Cell Cultures</h1>
+      <p class="author-names">Abdel Yasser, Rylee Rolstone, Sasha Ramchandani, Scott Garneau</p>
+    </header>
+
+    <!-- 1. Introduction Section -->
+    <section class="grid-card introduction">
+      <h2 class="section-title">Introduction</h2>
+      <div class="card-content">
+        <p>A 3D clinostat simulates microgravity by continuously rotating a sample around <strong>two perpendicular axes</strong>. By constantly altering the orientation relative to Earth, the <strong>direction of gravity</strong> changes faster than cells can perceive or adapt.</p>
+        <div class="image-placeholder">
+          <!-- IMAGE PLACEHOLDER: Place an image of the rotation diagram here -->
+          <span class="placeholder-text">[Image Placeholder: Perpendicular Axes Diagram]</span>
+        </div>
+        <p>This <strong>cancels out</strong> the directional force of gravity over time, resulting in a time-averaged gravitational vector near zero.</p>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>Team & Credits</h2>
-      <p>Add team member names, roles, or links to individual GitHub profiles.</p>
+    <!-- 2. Problem Statement Section -->
+    <section class="grid-card problem-statement">
+      <h2 class="section-title">Problem Statement</h2>
+      <div class="card-content">
+        <p>Commercial 3D clinostats are <strong>expensive</strong> and often <strong>too large</strong> for standard cell culture incubators. There is a need for a compact, modular system that keeps electronic controls <strong>outside the incubator</strong> while allowing the motorized rotating assembly to operate <strong>inside</strong> under controlled temperature and CO<sub>2</sub> conditions.</p>
+      </div>
     </section>
-  </main>
 
-  <footer>
-    <p>© 2026 Project Showcase Team</p>
-  </footer>
+    <!-- 3. Design Objectives Section -->
+    <section class="grid-card design-objectives">
+      <h2 class="section-title">Design Objectives</h2>
+      <div class="card-content">
+        <ul>
+          <li><strong>Incubator Compatibility:</strong> Build a compact assembly with biocompatible, heat-resistant materials designed to operate within humid cell culture incubator conditions.</li>
+          <li><strong>Split Architecture:</strong> Separate the internal motorized rotating frame from external controller and power electronics using sealed cables.</li>
+          <li><strong>Custom Sample Handling:</strong> Implement a removable rack system to securely hold multiple tissue culture chambers and flasks.</li>
+          <li><strong>Dual-Axis Control:</strong> Enable independent low-speed rotation (0.5-5rpm) across two perpendicular axes for precise microgravity simulation.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. Design & Analysis Section (Grid-spanning) -->
+    <section class="grid-card design-analysis grid-span-all">
+      <h2 class="section-title">Design & Analysis</h2>
+      <div class="card-content design-analysis-grid">
+        
+        <!-- Left Column of the subsection: Approaches -->
+        <div class="analysis-approaches">
+          <p>Existing 3D clinostat designs rely on two main approaches:</p>
+          <ul>
+            <li><strong>Base-Mounted Motors (Belt/Gear Drive):</strong> Keeps motors stationary to reduce rotating mass and simplify wiring. However, added mechanical complexity increases maintenance and risks positioning errors from backlash or belt slippage.</li>
+            <li><strong>Frame-Mounted Motors (Direct Drive):</strong> Mounts motors on rotating frames, simplifying the mechanism and improving positioning accuracy. The trade-offs are increased outer-axis mass (requiring higher torque) and wiring challenges during continuous rotation.</li>
+          </ul>
+          <p>We came up with a <strong>hybrid</strong> approach, employing a <strong>direct-mounted motor</strong> on our frame to simplify assembly, along with a <strong>base-mounted motor</strong> and pulley system to achieve a torque boost of 3:1.</p>
+        </div>
+
+        <!-- Right Column of the subsection: Graphics and details -->
+        <div class="analysis-details">
+          <div class="details-item">
+            <h3 class="subsection-title">Mechanical</h3>
+            <div class="image-placeholder">
+              <!-- IMAGE PLACEHOLDER: Place the initial Solidworks assembly image here -->
+              <span class="placeholder-text">[Image Placeholder: Initial Solidworks Assembly]</span>
+            </div>
+            <p class="caption">Above is our initial complete Solidworks assembly.</p>
+          </div>
+          <div class="details-item">
+            <div class="image-placeholder">
+              <!-- IMAGE PLACEHOLDER: Place the FEA analysis image here -->
+              <span class="placeholder-text">[Image Placeholder: FEA Analysis]</span>
+            </div>
+            <p class="caption">Finite element analysis was used to confirm that all parts could withstand our calculated forces.</p>
+          </div>
+          <div class="details-item">
+            <h3 class="subsection-title">Electrical & Firmware</h3>
+            <p>[Write a paragraph here explaining key aspects of your electrical and firmware design.]</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. Results Section -->
+    <section class="grid-card results">
+      <h2 class="section-title">Results</h2>
+      <div class="card-content results-layout">
+        <p>[Write paragraphs here explaining key aspects of your data and results.]</p>
+        <div class="image-placeholder">
+          <!-- IMAGE PLACEHOLDER: Place a main Clinostat image here -->
+          <span class="placeholder-text">[Image Placeholder: Completed Clinostat]</span>
+        </div>
+        <!-- This paragraph can be repeated/filled in as you have more data -->
+        <p>[Add a paragraph here explaining key aspects of your data.]</p>
+      </div>
+    </section>
+
+    <!-- 6. Conclusions Section -->
+    <section class="grid-card conclusions">
+      <h2 class="section-title">Conclusions</h2>
+      <div class="card-content">
+        <ul>
+          <li><strong>Successful System Integration:</strong> Designed, built, and validated a compact, low-cost 3D clinostat tailored for continuous operation within standard cell culture incubators.</li>
+          <li><strong>Dual-Axis Performance:</strong> Achieved smooth, independent rotational control (0.5-5rpm) across perpendicular axes while isolating controller electronics from high-humidity environments.</li>
+          <li><strong>Research Accessibility:</strong> Delivers a scalable, open-hardware alternative to expensive commercial platforms for simulated microgravity biological research.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. Future Work Section -->
+    <section class="grid-card future-work">
+      <h2 class="section-title">Future Work</h2>
+      <div class="card-content">
+        <ul>
+          <li>Biological verification using g-level testing</li>
+          <li>Making the <strong>inner frame</strong> easier to detach, and designing inner frames for single bottle batches</li>
+          <li>Built-in charging for our accelerometer</li>
+          <li>Making the machine more compact</li>
+          <li>Aesthetic improvements and finding a larger 3D printer to print our base in a single piece</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 8. Acknowledgment Section -->
+    <section class="grid-card acknowledgment">
+      <h2 class="section-title">Acknowledgment</h2>
+      <div class="card-content">
+        <p>We would like to express special appreciation to:</p>
+        <ul>
+          <li>Dr. Mohsen Akbari and Esfandyar Askari for guidance</li>
+          <li>Mike McQueen for technical advice and time</li>
+          <li>Cole Liggat and Mason Kurek for 3D-printing and emotional support</li>
+          <li>Summer Johnson, Regan Scott, and Chase Swanson for innovative ideas and design advice</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="grid-span-all main-footer">
+      <p>&copy; 2026 3D Clinostat Project Team</p>
+      <!-- You can place your References QR Code or list here -->
+      <div class="image-placeholder footer-qr">
+        <!-- IMAGE PLACEHOLDER: Place your references QR code here -->
+        <span class="placeholder-text">[QR Code Placeholder: References]</span>
+      </div>
+    </footer>
+
+  </div><!-- End of poster-container -->
 
   <script src="script.js"></script>
 </body>

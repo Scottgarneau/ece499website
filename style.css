@@ -26,7 +26,7 @@ strong {
   max-width: 1300px; /* Wider for desktop, constrained for readability */
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 even columns on large screens */
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 equal-width columns on large screens */
   gap: 1.5rem; /* Gap between "poster cards" */
 }
 
@@ -122,24 +122,48 @@ strong {
   align-items: center; /* Center images and data in results */
 }
 
-/* Placeholder styles (Temp images) */
+/* Image display styles */
 .image-placeholder {
-  background-color: #f1f3f5;
-  border: 2px dashed #ccd0d5;
-  color: #727b84;
   width: 100%;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin: 1rem 0;
-  border-radius: 8px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  overflow: visible;
+}
+
+.image-placeholder img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  background: transparent;
+}
+
+.image-placeholder img.rotate-ccw {
+  transform: rotate(-90deg);
+  transform-origin: center;
 }
 
 .placeholder-text {
   font-size: 0.9rem;
   text-align: center;
   padding: 0 1rem;
+}
+
+.image-grid,
+.results-visuals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.image-grid .image-placeholder,
+.results-visuals .image-placeholder {
+  margin: 0;
 }
 
 /* Main Clinostat Image placeholder (Larger) */

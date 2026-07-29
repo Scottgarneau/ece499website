@@ -23,9 +23,13 @@
       <h2 class="section-title">Introduction</h2>
       <div class="card-content">
         <p>A 3D clinostat simulates microgravity by continuously rotating a sample around <strong>two perpendicular axes</strong>. By constantly altering the orientation relative to Earth, the <strong>direction of gravity</strong> changes faster than cells can perceive or adapt.</p>
-        <div class="image-placeholder">
-          <!-- IMAGE PLACEHOLDER: Place an image of the rotation diagram here -->
-          <span class="placeholder-text">[Image Placeholder: Perpendicular Axes Diagram]</span>
+        <div class="image-grid">
+          <div class="image-placeholder">
+            <img src="images/PerpendicularAxis.png" alt="Perpendicular-axis diagram for the clinostat motion" />
+          </div>
+          <div class="image-placeholder">
+            <img src="images/GravityVectorSphere.png" alt="Visual representation of the net gravitational vector" />
+          </div>
         </div>
         <p>This <strong>cancels out</strong> the directional force of gravity over time, resulting in a time-averaged gravitational vector near zero.</p>
       </div>
@@ -72,21 +76,22 @@
           <div class="details-item">
             <h3 class="subsection-title">Mechanical</h3>
             <div class="image-placeholder">
-              <!-- IMAGE PLACEHOLDER: Place the initial Solidworks assembly image here -->
-              <span class="placeholder-text">[Image Placeholder: Initial Solidworks Assembly]</span>
+              <img src="images/SolidworksAssembly.png" alt="Initial Solidworks assembly of the 3D clinostat" />
             </div>
             <p class="caption">Above is our initial complete Solidworks assembly.</p>
           </div>
           <div class="details-item">
             <div class="image-placeholder">
-              <!-- IMAGE PLACEHOLDER: Place the FEA analysis image here -->
-              <span class="placeholder-text">[Image Placeholder: FEA Analysis]</span>
+              <img src="images/FEA.png" alt="Finite element analysis image related to the clinostat design" />
             </div>
             <p class="caption">Finite element analysis was used to confirm that all parts could withstand our calculated forces.</p>
           </div>
           <div class="details-item">
             <h3 class="subsection-title">Electrical & Firmware</h3>
-            <p>[Write a paragraph here explaining key aspects of your electrical and firmware design.]</p>
+            <div class="image-placeholder">
+              <img class="rotate-ccw" src="images/ElectricalBox.heic" alt="Electrical enclosure for the clinostat controller" />
+            </div>
+            <p>The external controller and power electronics were kept outside the incubator to preserve the sterile, temperature-controlled environment inside.</p>
           </div>
         </div>
 
@@ -98,9 +103,16 @@
       <h2 class="section-title">Results</h2>
       <div class="card-content results-layout">
         <p>[Write paragraphs here explaining key aspects of your data and results.]</p>
-        <div class="image-placeholder">
-          <!-- IMAGE PLACEHOLDER: Place a main Clinostat image here -->
-          <span class="placeholder-text">[Image Placeholder: Completed Clinostat]</span>
+        <div class="results-visuals">
+          <div class="image-placeholder">
+            <img src="images/CompleteClinostat.png" alt="Completed 3D clinostat assembly" />
+          </div>
+          <div class="image-placeholder">
+            <img src="images/PositionTracking.png" alt="Position tracking visualization for the clinostat motion" />
+          </div>
+          <div class="image-placeholder">
+            <img src="images/NetGravityOverTime.png" alt="Net gravity over time visualization" />
+          </div>
         </div>
         <!-- This paragraph can be repeated/filled in as you have more data -->
         <p>[Add a paragraph here explaining key aspects of your data.]</p>
@@ -134,7 +146,7 @@
     </section>
 
     <!-- 8. Acknowledgment Section -->
-    <section class="grid-card acknowledgment">
+    <section class="grid-card acknowledgment grid-span-all">
       <h2 class="section-title">Acknowledgment</h2>
       <div class="card-content">
         <p>We would like to express special appreciation to:</p>

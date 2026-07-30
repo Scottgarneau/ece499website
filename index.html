@@ -3,174 +3,651 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3D Clinostat For Simulated Microgravity in Cell Cultures | Project Showcase</title>
-  <meta name="description" content="Showcase of a 3D Clinostat project by Abdel Yasser, Rylee Rolstone, Sasha Ramchandani, and Scott Garneau." />
+  <title>3D Clinostat for Simulated Microgravity in Cell Cultures — ECE/BME 499</title>
+  <meta name="description" content="A compact, low-cost dual-axis 3D clinostat that time-averages the direction of gravity for cell culture research. ECE/BME 499 capstone project, University of Victoria." />
+  <meta name="author" content="Scott Garneau, Sasha Ramchandani, Rylee Rolstone, Abdel Yasser" />
+  <meta name="theme-color" content="#14120f" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="3D Clinostat for Simulated Microgravity in Cell Cultures" />
+  <meta property="og:description" content="A compact, low-cost dual-axis 3D clinostat built to run inside a standard cell culture incubator. ECE/BME 499 capstone, University of Victoria." />
+  <meta property="og:image" content="images/CompleteClinostat.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300..600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Main Grid Container: Inspired by the poster layout -->
-  <div class="poster-container">
+<a class="skip-link" href="#background">Skip to content</a>
 
-    <!-- Header Section -->
-    <header class="grid-span-all main-header">
-      <h1 class="main-title">3D Clinostat For Simulated Microgravity in Cell Cultures</h1>
-      <p class="author-names">Abdel Yasser, Rylee Rolstone, Sasha Ramchandani, Scott Garneau</p>
+<!-- ══════════════════════════ NAV ══════════════════════════ -->
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">
+        <strong>3D Clinostat</strong>
+        <span>ECE/BME 499 · UVic</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Section navigation">
+      <a href="#team">Team</a>
+      <a href="#background">Background</a>
+      <a href="#design">Design</a>
+      <a href="#results">Results</a>
+      <a href="#software">Software</a>
+      <a href="#report">Report</a>
+      <a href="#acknowledgment">Thanks</a>
+    </nav>
+
+    <a class="btn btn-live" href="#software" data-live-nav>
+      <span class="pulse" aria-hidden="true"></span> Live monitor
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav" aria-label="Open navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+</header>
+
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<main id="top">
+<section class="hero">
+  <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <p class="eyebrow">Capstone Project · Department of Electrical &amp; Computer Engineering · University of Victoria</p>
+    <h1>3D Clinostat for <em>Simulated Microgravity</em> in Cell Cultures</h1>
+    <p class="lede">
+      A compact, low-cost dual-axis clinostat that continuously reorients a biological sample so the
+      <strong>direction of gravity averages toward zero</strong> — small enough to live inside a standard
+      cell culture incubator, with all control electronics kept outside.
+    </p>
+
+    <ul class="hero-authors">
+      <li>Scott Garneau</li>
+      <li>Sasha Ramchandani</li>
+      <li>Rylee Rolstone</li>
+      <li>Abdel Yasser</li>
+    </ul>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#software" data-live-nav>
+        <span class="pulse" aria-hidden="true"></span> Open the live monitor
+      </a>
+      <a class="btn btn-ghost" href="#results">See the results</a>
+    </div>
+
+    <dl class="hero-stats">
+      <div><dt>Time-averaged gravity</dt><dd>0.0220 <span>g</span></dd></div>
+      <div><dt>Axis speed range</dt><dd>0.5–5 <span>rpm</span></dd></div>
+      <div><dt>Rotation axes</dt><dd>2 <span>perpendicular</span></dd></div>
+      <div><dt>Control electronics</dt><dd>0 <span>inside incubator</span></dd></div>
+    </dl>
+  </div>
+  <a class="scroll-cue" href="#team" aria-label="Scroll to content"><span></span></a>
+</section>
+
+<!-- ══════════════════════════ TEAM ══════════════════════════ -->
+<section class="section" id="team">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="kicker">01 — About the team</p>
+      <h2>Four engineers, one incubator-sized problem</h2>
+      <p class="section-lede">
+        We are a Biomedical and Electrical Engineering capstone team at the University of Victoria.
+        Over two terms we took this project from a literature review to a working, instrumented
+        machine — covering mechanical design, electronics, embedded firmware, desktop software, and
+        experimental validation between the four of us.
+      </p>
     </header>
 
-    <!-- 1. Introduction Section -->
-    <section class="grid-card introduction">
-      <h2 class="section-title">Introduction</h2>
-      <div class="card-content">
-        <p>A 3D clinostat simulates microgravity by continuously rotating a sample around <strong>two perpendicular axes</strong>. By constantly altering the orientation relative to Earth, the <strong>direction of gravity</strong> changes faster than cells can perceive or adapt.</p>
-        <div class="image-grid">
-          <div class="image-placeholder">
-            <img src="images/PerpendicularAxis.png" alt="Perpendicular-axis diagram for the clinostat motion" />
+    <figure class="team-photo reveal">
+      <img src="images/team-photo.jpg" alt="The four-person ECE/BME 499 clinostat capstone team together at a restaurant table" loading="lazy" width="1600" height="1200" />
+      <figcaption>The team, somewhere between a design review and a deadline.</figcaption>
+    </figure>
+
+    <!--
+      TODO (team): swap the <p> under each name for a one-line personal blurb —
+      discipline, what you owned on the project, and anything you want to be
+      contacted about. Everything else on the card can stay as is.
+    -->
+    <ul class="team-grid reveal">
+      <li class="member">
+        <span class="member-initial" aria-hidden="true">SG</span>
+        <h3>Scott Garneau</h3>
+        <p>ECE/BME 499 · University of Victoria</p>
+      </li>
+      <li class="member">
+        <span class="member-initial" aria-hidden="true">SR</span>
+        <h3>Sasha Ramchandani</h3>
+        <p>ECE/BME 499 · University of Victoria</p>
+      </li>
+      <li class="member">
+        <span class="member-initial" aria-hidden="true">RR</span>
+        <h3>Rylee Rolstone</h3>
+        <p>ECE/BME 499 · University of Victoria</p>
+      </li>
+      <li class="member">
+        <span class="member-initial" aria-hidden="true">AY</span>
+        <h3>Abdel Yasser</h3>
+        <p>ECE/BME 499 · University of Victoria</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════ BACKGROUND ══════════════════════════ -->
+<section class="section section-alt" id="background">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="kicker">02 — Background &amp; need</p>
+      <h2>Microgravity research that most labs cannot afford</h2>
+    </header>
+
+    <div class="split">
+      <div class="prose reveal">
+        <p>
+          Gravity is one of the few environmental variables biology has never been able to switch
+          off. Removing it changes real things: <strong>cell growth, tissue structure, and gene
+          expression</strong> all shift under microgravity, which makes it an important variable in
+          tissue engineering, regenerative medicine, and space biology.
+        </p>
+        <p>
+          The problem is access. True microgravity means orbit, and orbital experiments are
+          expensive, slow to schedule, and effectively closed to student and small-lab research.
+          A <strong>3D clinostat</strong> — also called a random positioning machine — offers a
+          ground-based alternative: rotate a sample about two perpendicular axes so its orientation
+          relative to Earth changes faster than the cells can perceive or adapt to.
+        </p>
+        <p>
+          Over time the gravity vector experienced by the sample averages out, producing a
+          <strong>simulated</strong> microgravity environment on a laboratory bench.
+        </p>
+
+        <aside class="callout callout-warn">
+          <h4>An honest boundary</h4>
+          <p>
+            This apparatus time-averages the <em>direction</em> of gravity. It does not create true
+            microgravity, and it is a research proof of concept — not a medical device. Every claim
+            on this page is written to respect that distinction.
+          </p>
+        </aside>
+      </div>
+
+      <div class="stack reveal">
+        <figure class="fig">
+          <img src="images/PerpendicularAxis.png" alt="Diagram of the two perpendicular rotation axes of a 3D clinostat" loading="lazy" />
+          <figcaption>Two perpendicular axes continuously reorient the sample chamber.</figcaption>
+        </figure>
+        <figure class="fig">
+          <img src="images/GravityVectorSphere.png" alt="Sphere showing the gravity vector sweeping across all orientations" loading="lazy" />
+          <figcaption>Swept across the sphere, the net gravitational vector approaches zero.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="problem-band reveal">
+      <h3>The problem we set out to solve</h3>
+      <p>
+        Commercial 3D clinostats are <strong>expensive</strong> and often <strong>too large</strong>
+        to fit a standard cell culture incubator. What was missing was a compact, modular system that
+        keeps the electronic controls <em>outside</em> the incubator while the motorized rotating
+        assembly operates <em>inside</em>, under controlled temperature, humidity, and CO<sub>2</sub>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ DESIGN ══════════════════════════ -->
+<section class="section" id="design">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="kicker">03 — Design</p>
+      <h2>How we addressed it</h2>
+      <p class="section-lede">
+        Four objectives drove every decision, from material selection to the shape of the software's
+        safety interlocks.
+      </p>
+    </header>
+
+    <ol class="objectives reveal">
+      <li>
+        <span class="obj-num">01</span>
+        <h3>Incubator compatibility</h3>
+        <p>A compact assembly in biocompatible, heat-resistant materials, designed to keep operating in the humidity of a live cell culture incubator.</p>
+      </li>
+      <li>
+        <span class="obj-num">02</span>
+        <h3>Split architecture</h3>
+        <p>The internal motorized frame is separated from the controller and power electronics, joined only by sealed cables through the incubator port.</p>
+      </li>
+      <li>
+        <span class="obj-num">03</span>
+        <h3>Custom sample handling</h3>
+        <p>A removable rack system securely holds multiple tissue culture chambers and flasks, so samples can be swapped without disturbing the frame.</p>
+      </li>
+      <li>
+        <span class="obj-num">04</span>
+        <h3>Dual-axis control</h3>
+        <p>Independent low-speed rotation from 0.5 to 5 rpm on each perpendicular axis, commanded and displayed in physical frame RPM rather than motor-shaft RPM.</p>
+      </li>
+    </ol>
+
+    <!-- Trade study -->
+    <div class="subsection reveal">
+      <h3 class="sub-title">The drive trade-off</h3>
+      <div class="tradeoff">
+        <article class="trade-card">
+          <h4>Base-mounted motors <span>belt / gear drive</span></h4>
+          <p class="pro">Less rotating mass and much simpler wiring — nothing spins with the frame.</p>
+          <p class="con">Added mechanical complexity increases maintenance, and backlash or belt slippage introduces positioning error.</p>
+        </article>
+        <article class="trade-card">
+          <h4>Frame-mounted motors <span>direct drive</span></h4>
+          <p class="pro">Simpler mechanism and better positioning accuracy — the motor is the axis.</p>
+          <p class="con">Increased outer-axis mass demands higher torque, and wiring must survive continuous rotation.</p>
+        </article>
+        <article class="trade-card trade-ours">
+          <h4>Our hybrid <span>what we built</span></h4>
+          <p class="pro">A <strong>direct-mounted motor</strong> on the inner frame to keep assembly simple, plus a <strong>base-mounted motor and pulley</strong> on the outer axis for a <strong>3:1 torque boost</strong>.</p>
+          <p class="con">Best of both: accuracy where it matters, torque where the mass is.</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- Mechanical -->
+    <div class="subsection reveal">
+      <h3 class="sub-title">Mechanical</h3>
+      <p class="sub-lede">
+        Mechanical work centred on the pulley system, bearings, and axles — the parts that decide
+        whether a machine running continuously for days stays quiet and stays aligned.
+      </p>
+      <div class="fig-row">
+        <figure class="fig">
+          <img src="images/SolidworksAssembly.png" alt="SolidWorks assembly of the complete 3D clinostat" loading="lazy" data-zoom />
+          <figcaption>The initial complete SolidWorks assembly.</figcaption>
+        </figure>
+        <figure class="fig">
+          <img src="images/FEA.png" alt="Finite element analysis stress plot of a clinostat structural member" loading="lazy" data-zoom />
+          <figcaption>Finite element analysis confirmed every part could withstand our calculated forces.</figcaption>
+        </figure>
+      </div>
+      <figure class="fig fig-wide">
+        <img src="images/CompleteClinostat.jpg" alt="The completed physical 3D clinostat assembly on a bench" loading="lazy" data-zoom />
+        <figcaption>The completed assembly, with culture flasks mounted in the removable inner rack.</figcaption>
+      </figure>
+    </div>
+
+    <!-- Electrical -->
+    <div class="subsection reveal">
+      <h3 class="sub-title">Electrical &amp; firmware</h3>
+      <p class="sub-lede">
+        The external controller and power electronics stay outside the incubator, preserving the
+        sterile, temperature-controlled environment inside. An ESP32 drives two stepper channels
+        through dedicated drivers; the firmware boots stopped and disarmed, requires an explicit ARM,
+        latches a software emergency stop, and disarms itself after 3.5 seconds without contact from
+        the desktop application.
+      </p>
+      <div class="fig-row">
+        <figure class="fig">
+          <img src="images/electrical-box.jpg" alt="The external electrical enclosure containing the controller and power electronics" loading="lazy" data-zoom />
+          <figcaption>The external enclosure — controller, drivers, and power supply, all outside the incubator.</figcaption>
+        </figure>
+        <figure class="fig">
+          <img src="images/electrical-schematic.png" alt="Electrical schematic of the clinostat control system" loading="lazy" data-zoom />
+          <figcaption>Control system schematic: microcontroller, driver subsystem, and power distribution.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ RESULTS ══════════════════════════ -->
+<section class="section section-alt" id="results">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="kicker">04 — Results &amp; findings</p>
+      <h2>What the machine actually measured</h2>
+      <p class="section-lede">
+        The figures below come from a single preserved hardware run,
+        <code>20260729_011743</code>, recorded from a WitMotion BWT901CL IMU mounted in the sample
+        frame. Nothing here is simulated.
+      </p>
+    </header>
+
+    <dl class="metrics reveal">
+      <div><dt>Final time-averaged ‖g‖</dt><dd>0.0220<span>g</span></dd></div>
+      <div><dt>Recorded duration</dt><dd>152.1<span>s</span></dd></div>
+      <div><dt>Normalized IMU samples</dt><dd>1,527<span>captured</span></dd></div>
+      <div><dt>Commanded speeds</dt><dd>4.0 / 3.6<span>rpm outer / inner</span></dd></div>
+      <div><dt>Replay integrity issues</dt><dd>0<span>none detected</span></dd></div>
+    </dl>
+
+    <div class="finding reveal">
+      <div class="finding-text">
+        <h3>Gravity averages down, and keeps going down</h3>
+        <p>
+          The instantaneous specific force on the sample never stops changing — that is the whole
+          point. What matters is the running mean. Over 152 seconds of two-axis rotation the
+          cumulative time-averaged gravity vector converged to a magnitude of
+          <strong>0.0220 g</strong>, roughly <strong>2% of normal Earth gravity</strong>, and was
+          still trending downward when the run ended.
+        </p>
+        <p class="fine">
+          This is an IMU-derived, time-weighted estimate from measured specific force. It is not an
+          encoder measurement, and it is not a claim of biological microgravity.
+        </p>
+      </div>
+      <div class="finding-figs">
+        <figure class="fig">
+          <img src="images/fig-specific-force.png" alt="Plot of specific force components during two-axis clinostat operation" loading="lazy" data-zoom />
+          <figcaption>Specific force during two-axis operation — the raw, ever-changing input.</figcaption>
+        </figure>
+        <figure class="fig">
+          <img src="images/fig-cumulative-gravity.png" alt="Plot of the cumulative time-averaged gravity vector converging toward zero" loading="lazy" data-zoom />
+          <figcaption>The cumulative time-averaged gravity vector converging toward zero.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="finding finding-reverse reveal">
+      <div class="finding-text">
+        <h3>Orientation coverage across the full sphere</h3>
+        <p>
+          Averaging only works if the sample actually visits every orientation. Plotting the measured
+          gravity direction in the sample's own coordinate frame traces a path that sweeps the
+          sphere rather than settling into a groove — the geometric condition that makes the
+          time-average meaningful.
+        </p>
+        <p>
+          Fused orientation from the IMU gives real-time roll, pitch, and yaw of the sample chamber
+          relative to the lab frame, which is what lets us verify coverage instead of assuming it.
+        </p>
+      </div>
+      <div class="finding-figs">
+        <figure class="fig">
+          <img src="images/fig-gravity-sphere.png" alt="Gravity sphere showing measured gravity direction path in the sample coordinate frame" loading="lazy" data-zoom />
+          <figcaption>Measured gravity direction sweeping the sample coordinate frame.</figcaption>
+        </figure>
+        <figure class="fig">
+          <img src="images/fig-orientation-cube.png" alt="3D cube visualization of sample chamber orientation relative to the lab frame" loading="lazy" data-zoom />
+          <figcaption>Sample chamber and IMU orientation relative to the lab frame.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="fig-row reveal">
+      <figure class="fig">
+        <img src="images/fig-orientation.png" alt="Measured orientation angles over time" loading="lazy" data-zoom />
+        <figcaption>Measured roll, pitch, and yaw over the full run.</figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="images/fig-axis-speed.png" alt="Generated axis speed telemetry from the ESP32 controller" loading="lazy" data-zoom />
+        <figcaption>Generated axis speed from ESP32 open-loop STEP telemetry — commanded, not encoder-verified.</figcaption>
+      </figure>
+    </div>
+
+    <div class="conclusions reveal">
+      <h3>Conclusions</h3>
+      <ul>
+        <li>
+          <strong>Successful system integration.</strong> We designed, built, and validated a compact,
+          low-cost 3D clinostat tailored for continuous operation inside standard cell culture
+          incubators.
+        </li>
+        <li>
+          <strong>Dual-axis performance.</strong> Smooth, independent rotational control from 0.5 to
+          5 rpm across perpendicular axes, with controller electronics fully isolated from the
+          high-humidity environment.
+        </li>
+        <li>
+          <strong>Research accessibility.</strong> The result is a scalable, open-hardware
+          alternative to expensive commercial platforms for simulated microgravity biology.
+        </li>
+      </ul>
+    </div>
+
+    <div class="future reveal">
+      <h3>Future work</h3>
+      <ul>
+        <li>Biological verification using g-level testing</li>
+        <li>Making the inner frame easier to detach, and designing inner frames for single-bottle batches</li>
+        <li>Built-in charging for the accelerometer</li>
+        <li>Making the machine more compact</li>
+        <li>Aesthetic improvements, and a larger 3D printer so the base can be printed in a single piece in PETG</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ SOFTWARE / LIVE APP ══════════════════════════ -->
+<section class="section" id="software">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="kicker">05 — Control software</p>
+      <h2>The instrument is only half the machine</h2>
+      <p class="section-lede">
+        A clinostat that cannot prove what it did is not a research tool. We built a desktop control
+        application that owns the experiment lifecycle, records losslessly to self-describing
+        CSV/JSON, and treats every displayed number as evidence rather than decoration.
+      </p>
+    </header>
+
+    <div class="live-card reveal">
+      <div class="live-copy">
+        <p class="live-kicker"><span class="pulse" aria-hidden="true"></span> Live, read-only</p>
+        <h3>Watch a run in your browser</h3>
+        <p>
+          The hosted monitor mirrors the current experiment, controller, and IMU telemetry from the
+          bench. It is deliberately <strong>read-only</strong> — no route accepts a motor, experiment,
+          or emergency-stop command. The desktop application and the physical safety chain remain the
+          only control authority.
+        </p>
+        <!-- Live monitor room link. To point at a different room, change this href only. -->
+        <a class="btn btn-primary btn-lg" id="liveLink"
+           href="https://clinostat-remote-monitor.abdely.workers.dev/#room=d5beef1da48fc420c6691032032a198e3b4450f46d165efb4d5690a1eac67bad"
+           target="_blank" rel="noopener noreferrer">
+          Open the live web app <span aria-hidden="true">↗</span>
+        </a>
+        <p class="fine">
+          If the bench is idle you will see the last published snapshot or an empty room — network
+          status is never an emergency-stop indication.
+        </p>
+      </div>
+      <div class="live-visual" aria-hidden="true">
+        <canvas id="vectorCanvas"></canvas>
+        <p class="live-visual-cap">time-averaged gravity vector</p>
+      </div>
+    </div>
+
+    <div class="subsection reveal">
+      <h3 class="sub-title">Inside the application</h3>
+      <div class="shots">
+        <figure class="fig">
+          <img src="images/app-overview.png" alt="Overview screen of the clinostat desktop control application" loading="lazy" data-zoom />
+          <figcaption><strong>Overview</strong> — active run, readiness checks, and machine profile at a glance.</figcaption>
+        </figure>
+        <figure class="fig">
+          <img src="images/app-experiment.png" alt="Experiment setup screen with run identification and motor settings" loading="lazy" data-zoom />
+          <figcaption><strong>Experiment setup</strong> — constant speed, target gravity, or multi-stage, with an explicit safety review before start.</figcaption>
+        </figure>
+        <figure class="fig">
+          <img src="images/app-manual-control.png" alt="Manual control screen showing inner and outer axis targets" loading="lazy" data-zoom />
+          <figcaption><strong>Manual control</strong> — per-axis commissioning, gated behind a controller handshake and explicit ARM.</figcaption>
+        </figure>
+      </div>
+      <p class="fine centered">
+        Screens captured from the browser preview build using demonstration data; hardware values
+        appear only when a controller is connected.
+      </p>
+    </div>
+
+    <!--
+      TODO (team): once the signed desktop builds exist, replace this block with real
+      download links (macOS .dmg / Windows .exe). Drop the installers somewhere with a
+      stable URL — a GitHub Release on the clinostat-control-system repo is the easiest —
+      and point the anchors at them.
+    -->
+    <div class="downloads reveal">
+      <h3>Desktop builds</h3>
+      <p>
+        Packaged macOS and Windows builds of the control application are being prepared and will be
+        published here once signed.
+      </p>
+      <div class="download-row">
+        <span class="download-stub" aria-disabled="true">macOS · coming soon</span>
+        <span class="download-stub" aria-disabled="true">Windows · coming soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ FINAL REPORT ══════════════════════════ -->
+<section class="section section-alt" id="report">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="kicker">06 — Final report</p>
+      <h2>Read the full write-up</h2>
+      <p class="section-lede">
+        The final report covers the complete design rationale, the mathematical model behind the
+        gravity averaging, the commissioning procedure, and the full results analysis.
+      </p>
+    </header>
+
+    <!--
+      TODO (team): drop the final report PDF at  docs/ECE499-Final-Report.pdf
+      in this repo. Both the embed and the download button below already point at
+      that path, so no further edits are needed — the placeholder note hides itself
+      automatically once the file resolves.
+    -->
+    <div class="report reveal">
+      <div class="report-embed" id="reportEmbed">
+        <object data="docs/ECE499-Final-Report.pdf" type="application/pdf" aria-label="Final report PDF">
+          <div class="report-missing">
+            <h4>Report not published yet</h4>
+            <p>
+              The final report PDF has not been added to this site. Once
+              <code>docs/ECE499-Final-Report.pdf</code> exists in the repository it will appear here
+              automatically.
+            </p>
           </div>
-          <div class="image-placeholder">
-            <img src="images/GravityVectorSphere.png" alt="Visual representation of the net gravitational vector" />
-          </div>
-        </div>
-        <p>This <strong>cancels out</strong> the directional force of gravity over time, resulting in a time-averaged gravitational vector near zero.</p>
+        </object>
       </div>
-    </section>
+      <aside class="report-side">
+        <h3>ECE/BME 499 Final Report</h3>
+        <p>3D Clinostat for Simulated Microgravity in Cell Cultures</p>
+        <p class="fine">Garneau, Ramchandani, Rolstone, Yasser · University of Victoria</p>
+        <a class="btn btn-primary" href="docs/ECE499-Final-Report.pdf" download>
+          Download PDF <span aria-hidden="true">↓</span>
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
 
-    <!-- 2. Problem Statement Section -->
-    <section class="grid-card problem-statement">
-      <h2 class="section-title">Problem Statement</h2>
-      <div class="card-content">
-        <p>Commercial 3D clinostats are <strong>expensive</strong> and often <strong>too large</strong> for standard cell culture incubators. There is a need for a compact, modular system that keeps electronic controls <strong>outside the incubator</strong> while allowing the motorized rotating assembly to operate <strong>inside</strong> under controlled temperature and CO<sub>2</sub> conditions.</p>
-      </div>
-    </section>
+<!-- ══════════════════════════ ACKNOWLEDGMENT ══════════════════════════ -->
+<section class="section" id="acknowledgment">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="kicker">07 — Acknowledgment</p>
+      <h2>This did not happen alone</h2>
+      <p class="section-lede">
+        A capstone runs on borrowed expertise, borrowed printer time, and a lot of patience. We would
+        like to express special appreciation to:
+      </p>
+    </header>
 
-    <!-- 3. Design Objectives Section -->
-    <section class="grid-card design-objectives">
-      <h2 class="section-title">Design Objectives</h2>
-      <div class="card-content">
-        <ul>
-          <li><strong>Incubator Compatibility:</strong> Build a compact assembly with biocompatible, heat-resistant materials designed to operate within humid cell culture incubator conditions.</li>
-          <li><strong>Split Architecture:</strong> Separate the internal motorized rotating frame from external controller and power electronics using sealed cables.</li>
-          <li><strong>Custom Sample Handling:</strong> Implement a removable rack system to securely hold multiple tissue culture chambers and flasks.</li>
-          <li><strong>Dual-Axis Control:</strong> Enable independent low-speed rotation (0.5-5rpm) across two perpendicular axes for precise microgravity simulation.</li>
-        </ul>
-      </div>
-    </section>
+    <ul class="thanks reveal">
+      <li>
+        <h3>Dr. Mohsen Akbari &amp; Esfandyar Askari</h3>
+        <p>For guidance throughout the project.</p>
+      </li>
+      <li>
+        <h3>Mike McQueen</h3>
+        <p>For technical advice and generous amounts of time.</p>
+      </li>
+      <li>
+        <h3>Cole Liggat &amp; Mason Kurek</h3>
+        <p>For 3D printing — and emotional support.</p>
+      </li>
+      <li>
+        <h3>Summer Johnson, Regan Scott &amp; Chase Swanson</h3>
+        <p>For innovative ideas and design advice.</p>
+      </li>
+    </ul>
+  </div>
+</section>
 
-    <!-- 4. Design & Analysis Section (Grid-spanning) -->
-    <section class="grid-card design-analysis grid-span-all">
-      <h2 class="section-title">Design & Analysis</h2>
-      <div class="card-content design-analysis-grid">
-        
-        <!-- Left Column of the subsection: Approaches -->
-        <div class="analysis-approaches">
-          <p>Existing 3D clinostat designs rely on two main approaches:</p>
-          <ul>
-            <li><strong>Base-Mounted Motors (Belt/Gear Drive):</strong> Keeps motors stationary to reduce rotating mass and simplify wiring. However, added mechanical complexity increases maintenance and risks positioning errors from backlash or belt slippage.</li>
-            <li><strong>Frame-Mounted Motors (Direct Drive):</strong> Mounts motors on rotating frames, simplifying the mechanism and improving positioning accuracy. The trade-offs are increased outer-axis mass (requiring higher torque) and wiring challenges during continuous rotation.</li>
-          </ul>
-          <p>We came up with a <strong>hybrid</strong> approach, employing a <strong>direct-mounted motor</strong> on our frame to simplify assembly, along with a <strong>base-mounted motor</strong> and pulley system to achieve a torque boost of 3:1.</p>
-        </div>
+<!-- ══════════════════════════ REFERENCES ══════════════════════════ -->
+<section class="section section-alt" id="references">
+  <div class="wrap wrap-narrow">
+    <header class="section-head">
+      <p class="kicker">08 — References</p>
+      <h2>Sources</h2>
+    </header>
 
-        <!-- Right Column of the subsection: Graphics and details -->
-        <div class="analysis-details">
-          <div class="details-item">
-            <h3 class="subsection-title">Mechanical</h3>
-            <div class="image-placeholder">
-              <img src="images/SolidworksAssembly.png" alt="Initial Solidworks assembly of the 3D clinostat" />
-            </div>
-            <p class="caption">Above is our initial complete Solidworks assembly.</p>
-          </div>
-          <div class="details-item">
-            <div class="image-placeholder">
-              <img src="images/FEA.png" alt="Finite element analysis image related to the clinostat design" />
-            </div>
-            <p class="caption">Finite element analysis was used to confirm that all parts could withstand our calculated forces.</p>
-          </div>
-          <div class="details-item">
-            <h3 class="subsection-title">Electrical & Firmware</h3>
-            <div class="image-placeholder">
-              <img class="rotate-ccw" src="images/ElectricalBox.heic" alt="Electrical enclosure for the clinostat controller" />
-            </div>
-            <p>The external controller and power electronics were kept outside the incubator to preserve the sterile, temperature-controlled environment inside.</p>
-          </div>
-        </div>
+    <ol class="refs reveal">
+      <li>
+        D. H. Choi et al., “3D cell culture using a clinostat reproduces microgravity-induced skin
+        changes,” <em>npj Microgravity</em>, vol. 7, no. 1, Jun. 2021, doi:
+        <a href="https://doi.org/10.1038/s41526-021-00148-6" target="_blank" rel="noopener noreferrer">10.1038/s41526-021-00148-6</a>.
+      </li>
+      <li>
+        T. Russomano et al., “Development and Validation of a 3D Clinostat for the Study of Cells
+        during Microgravity Simulation,” <em>Annual International Conference of the IEEE Engineering
+        in Medicine and Biology Society</em>, vol. 2006, pp. 564–566, 2005, doi:
+        <a href="https://doi.org/10.1109/IEMBS.2005.1616474" target="_blank" rel="noopener noreferrer">10.1109/IEMBS.2005.1616474</a>.
+      </li>
+      <li>
+        A. J. Clary et al., “Design and validation of a low-cost three-dimensional clinostat for
+        simulated microgravity research,” <em>Frontiers in Space Technologies</em>, vol. 3, 2022.
+      </li>
+      <li>
+        R. Barker, “3D Clinostat,” YouTube, Oct. 21, 2018. [Online]. Available:
+        <a href="https://www.youtube.com/watch?v=NB35XGZZASI" target="_blank" rel="noopener noreferrer">youtube.com/watch?v=NB35XGZZASI</a>. [Accessed: Jun. 1, 2026].
+      </li>
+      <li>
+        Dr. Chatterjee Lab, “3D Clinostat – A Representative Video,” YouTube, Mar. 24, 2022.
+        [Online]. Available:
+        <a href="https://www.youtube.com/watch?v=XaD5EsYtPJM" target="_blank" rel="noopener noreferrer">youtube.com/watch?v=XaD5EsYtPJM</a>. [Accessed: Jun. 22, 2026].
+      </li>
+    </ol>
+  </div>
+</section>
+</main>
 
-      </div>
-    </section>
+<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="footer-title">3D Clinostat for Simulated Microgravity in Cell Cultures</p>
+      <p class="fine">ECE/BME 499 · Department of Electrical &amp; Computer Engineering · University of Victoria</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#team">Team</a>
+      <a href="#background">Background</a>
+      <a href="#design">Design</a>
+      <a href="#results">Results</a>
+      <a href="#software">Software</a>
+      <a href="#report">Report</a>
+      <a href="#references">References</a>
+    </nav>
+    <p class="fine">© 2026 3D Clinostat Capstone Team</p>
+  </div>
+</footer>
 
-    <!-- 5. Results Section -->
-    <section class="grid-card results">
-      <h2 class="section-title">Results</h2>
-      <div class="card-content results-layout">
-        <p>[Write paragraphs here explaining key aspects of your data and results.]</p>
-        <div class="results-visuals">
-          <div class="image-placeholder">
-            <img src="images/CompleteClinostat.png" alt="Completed 3D clinostat assembly" />
-          </div>
-          <div class="image-placeholder">
-            <img src="images/PositionTracking.png" alt="Position tracking visualization for the clinostat motion" />
-          </div>
-          <div class="image-placeholder">
-            <img src="images/NetGravityOverTime.png" alt="Net gravity over time visualization" />
-          </div>
-        </div>
-        <!-- This paragraph can be repeated/filled in as you have more data -->
-        <p>[Add a paragraph here explaining key aspects of your data.]</p>
-      </div>
-    </section>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image" hidden>
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close image">×</button>
+  <img id="lightboxImg" alt="" />
+  <p id="lightboxCap"></p>
+</div>
 
-    <!-- 6. Conclusions Section -->
-    <section class="grid-card conclusions">
-      <h2 class="section-title">Conclusions</h2>
-      <div class="card-content">
-        <ul>
-          <li><strong>Successful System Integration:</strong> Designed, built, and validated a compact, low-cost 3D clinostat tailored for continuous operation within standard cell culture incubators.</li>
-          <li><strong>Dual-Axis Performance:</strong> Achieved smooth, independent rotational control (0.5-5rpm) across perpendicular axes while isolating controller electronics from high-humidity environments.</li>
-          <li><strong>Research Accessibility:</strong> Delivers a scalable, open-hardware alternative to expensive commercial platforms for simulated microgravity biological research.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 7. Future Work Section -->
-    <section class="grid-card future-work">
-      <h2 class="section-title">Future Work</h2>
-      <div class="card-content">
-        <ul>
-          <li>Biological verification using g-level testing</li>
-          <li>Making the <strong>inner frame</strong> easier to detach, and designing inner frames for single bottle batches</li>
-          <li>Built-in charging for our accelerometer</li>
-          <li>Making the machine more compact</li>
-          <li>Aesthetic improvements and finding a larger 3D printer to print our base in a single piece</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 8. Acknowledgment Section -->
-    <section class="grid-card acknowledgment grid-span-all">
-      <h2 class="section-title">Acknowledgment</h2>
-      <div class="card-content">
-        <p>We would like to express special appreciation to:</p>
-        <ul>
-          <li>Dr. Mohsen Akbari and Esfandyar Askari for guidance</li>
-          <li>Mike McQueen for technical advice and time</li>
-          <li>Cole Liggat and Mason Kurek for 3D-printing and emotional support</li>
-          <li>Summer Johnson, Regan Scott, and Chase Swanson for innovative ideas and design advice</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="grid-span-all main-footer">
-      <p>&copy; 2026 3D Clinostat Project Team</p>
-      <!-- You can place your References QR Code or list here -->
-      <div class="image-placeholder footer-qr">
-        <!-- IMAGE PLACEHOLDER: Place your references QR code here -->
-        <span class="placeholder-text">[QR Code Placeholder: References]</span>
-      </div>
-    </footer>
-
-  </div><!-- End of poster-container -->
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
